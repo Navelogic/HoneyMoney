@@ -83,23 +83,20 @@ CREATE TABLE AccountVerifications (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,
     url VARCHAR(255) NOT NULL,
-    -- date DATETIME NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT UQ_AccountVerifications_User_Id UNIQUE (user_id),
     CONSTRAINT UQ_AccountVerifications_Url UNIQUE (url)
 
-
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-DROP TABLE IF EXISTS RessetPasswordVerifications;
-CREATE TABLE RessetPasswordVerifications (
+DROP TABLE IF EXISTS ResetPasswordVerifications;
+CREATE TABLE ResetPasswordVerifications (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,
     url VARCHAR(255) NOT NULL,
     expiration_date DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT UQ_RessetPasswordVerifications_User_Id UNIQUE (user_id),
-    CONSTRAINT UQ_RessetPasswordVerifications_Url UNIQUE (url)
-
-
+    CONSTRAINT UQ_ResetPasswordVerifications_User_Id UNIQUE (user_id),
+    CONSTRAINT UQ_ResetPasswordVerifications_Url UNIQUE (url)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
