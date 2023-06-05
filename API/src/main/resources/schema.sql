@@ -12,7 +12,6 @@
 
 CREATE SCHEMA IF NOT EXISTS dbhoneymoney;
 SET NAMES 'UTF8MB4';
-SET TIME_ZONE = 'America/Sao_Paulo';
 
 USE dbhoneymoney;
 
@@ -35,6 +34,10 @@ CREATE TABLE Users (
     CONSTRAINT UQ_Users_Email UNIQUE (email)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+#INSERT INTO Users (first_name, last_name, email, password, address, phone, title, bio, enabled, non_locked, using_nfa, created_at, image_url)
+#VALUES ('John', 'Doe', 'johndoe@example.com', 'mypassword', '123 Main St', '555-1234', 'Manager', 'Lorem ipsum dolor sit amet', TRUE, TRUE, FALSE, NOW(), 'https://cdn-icons-png.flaticon.com/512/149/149074.png');
+
 
 DROP TABLE IF EXISTS Roles;
 CREATE TABLE Roles (
