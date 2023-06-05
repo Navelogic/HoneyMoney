@@ -1,0 +1,9 @@
+Um modelo físico, no contexto de banco de dados,
+é uma representação detalhada da estrutura física do banco de dados.
+Ele descreve como os dados são armazenados nos dispositivos de armazenamento,
+como discos rígidos, tabelas, índices, partições e outros componentes relacionados.
+
+O modelo físico fornece informações específicas sobre o armazenamento e a
+organização dos dados, incluindo detalhes como tipos de dados, tamanhos de campos,
+chaves primárias e estrangeiras, índices, restrições de integridade e outros
+aspectos relacionados ao desempenho e eficiência do banco de dados.
