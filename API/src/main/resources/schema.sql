@@ -85,7 +85,8 @@ CREATE TABLE AccountVerifications (
     url VARCHAR(255) NOT NULL,
     -- date DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT UQ_AccountVerifications_User_Id UNIQUE (user_id)
+    CONSTRAINT UQ_AccountVerifications_User_Id UNIQUE (user_id),
+    CONSTRAINT UQ_AccountVerifications_Url UNIQUE (url)
 
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
