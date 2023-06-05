@@ -13,3 +13,13 @@ Honey Money is a web application developed using Java Spring Boot for the backen
 - View a list of all customers.
 - Manage customer information associated with each order.
 - Generate reports and statistics related to orders.
+
+## Spring Initializr Dependencies
+- Spring Boot Dev Tools
+- Spring Web
+- Spring Security
+- Spring Data JPA
+- MySQL Driver
+- JDBC API
+- Lombook
+- Validation
