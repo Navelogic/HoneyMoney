@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class User {
-    private long id;
+    private Long id;
 
     @NotEmpty(message = "Primeiro nome é obrigatório!")
     private String firstName;
