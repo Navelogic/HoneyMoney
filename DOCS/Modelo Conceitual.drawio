@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-05T15:24:22.531Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.37" etag="PEaBWCQRI9IlrhnVI9er" version="21.3.5" type="device">
+<mxfile host="app.diagrams.net" modified="2023-06-05T15:24:43.858Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.37" etag="dwAhbTfuq3Per6ovUJuh" version="21.3.5" type="device">
   <diagram name="Página-1" id="BpLtG1DrsnZtsbV-ATEf">
     <mxGraphModel dx="657" dy="786" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -8,6 +8,12 @@
           <mxGeometry x="150" y="50" width="160" height="310" as="geometry" />
         </mxCell>
         <mxCell id="CVuXusIY3BIMxrkss_ZK-2" value="firstName&lt;br&gt;lastName&lt;br&gt;email&lt;br&gt;password" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="CVuXusIY3BIMxrkss_ZK-1">
+          <mxGeometry y="50" width="160" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="CVuXusIY3BIMxrkss_ZK-6" value="Role" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="40" width="160" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="CVuXusIY3BIMxrkss_ZK-7" value="firstName&lt;br&gt;lastName&lt;br&gt;email&lt;br&gt;password" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="CVuXusIY3BIMxrkss_ZK-6">
           <mxGeometry y="50" width="160" height="260" as="geometry" />
         </mxCell>
       </root>
