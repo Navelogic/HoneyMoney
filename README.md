@@ -21,5 +21,12 @@ Honey Money is a web application developed using Java Spring Boot for the backen
 - Spring Data JPA
 - MySQL Driver
 - JDBC API
-- Lombook
+- Lombok
 - Validation
+
+## Prerequisites
+Before running this application, make sure you have the following installed:
+- Java Development Kit (JDK) 8 or higher
+- MySQL database
+- Node.js and npm (Node Package Manager)
+- Angular CLI (Command Line Interface)
