@@ -1,6 +1,8 @@
 package br.com.honeymoney.api.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "categorys")
@@ -11,6 +13,8 @@ public class Category {
     private Long id;
 
     // String
+    @NotNull(message = "Nome da categoria não pode ser nulo")
+    @NotEmpty(message = "Nome da categoria é obrigatório")
     private String name;
 
     // Getters and Setters
