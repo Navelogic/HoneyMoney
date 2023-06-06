@@ -23,6 +23,7 @@ Honey Money is a web application developed using Java Spring Boot for the backen
 - JDBC API
 - Lombok
 - Validation
+- FlayWay
 
 ## Prerequisites
 Before running this application, make sure you have the following installed:
