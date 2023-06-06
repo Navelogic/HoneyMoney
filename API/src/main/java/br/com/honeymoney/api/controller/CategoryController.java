@@ -10,7 +10,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/categorys")
@@ -38,11 +37,12 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> save(@RequestBody Category category, HttpServletResponse response) {
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(category.getId()).toUri();
-        response.setHeader("Location", uri.toASCIIString());
-        return categoryService.save(category);
+    public ResponseEntity<?> save(@RequestBody Category category) {
+        ResponseEntity<?> categorySaved = categoryService.save(category);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(categorySaved).toUri();
+        return ResponseEntity.created(location).body(categorySaved);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
