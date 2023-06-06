@@ -5,7 +5,9 @@ import br.com.honeymoney.api.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -24,10 +26,10 @@ public class CategoryService {
         return category != null ? ResponseEntity.ok(category) : ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<?> save(Category category) {
-        Category categorySaved = categoryDAO.save(category);
-        return ResponseEntity.ok(categorySaved);
+    public Category save(Category category) {
+        return categoryDAO.save(category);
     }
+
 
     public ResponseEntity<?> delete(Long id) {
         Category category = categoryDAO.findById(id).orElse(null);
