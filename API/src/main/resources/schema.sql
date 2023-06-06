@@ -30,6 +30,8 @@ CREATE TABLE Users (
     non_locked BOOLEAN DEFAULT TRUE,
     using_mfa BOOLEAN DEFAULT FALSE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    last_login DATETIME DEFAULT NULL,
     image_url VARCHAR(255) DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149074.png',
     CONSTRAINT UQ_Users_Email UNIQUE (email)
 
