@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.util.List;
 
@@ -26,8 +27,11 @@ public class CategoryService {
         return category != null ? ResponseEntity.ok(category) : ResponseEntity.noContent().build();
     }
 
-    public Category save(Category category) {
-        return categoryDAO.save(category);
+    public ResponseEntity<Category> save(Category category, HttpServletResponse response) {
+        Category categorySaved = categoryDAO.save(category);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(categorySaved.getId()).toUri();
+        response.setHeader("Location", location.toASCIIString());
+        return ResponseEntity.created(location).body(categorySaved);
     }
 
 

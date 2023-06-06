@@ -34,17 +34,10 @@ public class CategoryController {
     public ResponseEntity<?> findById(@PathVariable Long id) {
         return categoryService.findById(id);
     }
-
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> save(@RequestBody Category category, HttpServletResponse response) {
-        Category categorySaved = categoryService.save(category);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(categorySaved.getId()).toUri();
-        response.setHeader("Location", location.toASCIIString());
-        return ResponseEntity.created(location).build();
+    public ResponseEntity<Category> save(@RequestBody Category category, HttpServletResponse response) {
+        return categoryService.save(category, response);
     }
-
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
