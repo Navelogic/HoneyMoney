@@ -1,10 +1,10 @@
 package br.com.honeymoney.api.controller;
 
+import br.com.honeymoney.api.model.Category;
 import br.com.honeymoney.api.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +23,22 @@ public class CategoryController {
     // END Test
 
     @GetMapping
-    public List findAll() {
+    public ResponseEntity<?> findAll() {
         return categoryService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        return categoryService.findById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody Category category) {
+        return categoryService.save(category);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        return categoryService.delete(id);
     }
 }
