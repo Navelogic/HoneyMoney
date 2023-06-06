@@ -27,10 +27,16 @@ public class CategoryController {
         return categoryService.findAll();
     }
 
+    @GetMapping("/count")
+    public Integer count() {
+        return categoryService.count();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         return categoryService.findById(id);
     }
+
     @PostMapping
     public ResponseEntity<Category> save(@RequestBody Category category, HttpServletResponse response) {
         return categoryService.save(category, response);

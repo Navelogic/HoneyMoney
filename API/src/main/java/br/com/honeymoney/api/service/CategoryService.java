@@ -38,7 +38,6 @@ public class CategoryService {
         return ResponseEntity.created(location).body(categorySaved);
     }
 
-
     public ResponseEntity<?> delete(Long id) {
         Category category = categoryDAO.findById(id).orElse(null);
         if (category != null) {
@@ -48,4 +47,11 @@ public class CategoryService {
         return ResponseEntity.notFound().build();
     }
 
+    public Integer count() {
+        int count = 0;
+        for (Category category : categoryDAO.findAll()) {
+            count++;
+        }
+        return count;
+    }
 }
