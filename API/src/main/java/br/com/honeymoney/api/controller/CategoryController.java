@@ -3,13 +3,10 @@ package br.com.honeymoney.api.controller;
 import br.com.honeymoney.api.model.Category;
 import br.com.honeymoney.api.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/api/categorys")

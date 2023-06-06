@@ -24,12 +24,16 @@ public class CategoryService {
 
     public ResponseEntity<?> findById(Long id) {
         Category category = categoryDAO.findById(id).orElse(null);
-        return category != null ? ResponseEntity.ok(category) : ResponseEntity.noContent().build();
+        return category != null ? ResponseEntity.ok(category) : ResponseEntity.notFound().build();
     }
 
     public ResponseEntity<Category> save(Category category, HttpServletResponse response) {
         Category categorySaved = categoryDAO.save(category);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(categorySaved.getId()).toUri();
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequestUri()
+                .path("/{id}")
+                .buildAndExpand(categorySaved.getId())
+                .toUri();
         response.setHeader("Location", location.toASCIIString());
         return ResponseEntity.created(location).body(categorySaved);
     }
