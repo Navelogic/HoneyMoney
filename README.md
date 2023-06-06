@@ -30,6 +30,3 @@ Before running this application, make sure you have the following installed:
 - MySQL database
 - Node.js and npm (Node Package Manager)
 - Angular CLI (Command Line Interface)
-
-## Modelo Físico
-![#1 Modelo Físico](https://github.com/Navelogic/HoneyMoney/assets/93350805/887a576f-89b7-4a53-8fb1-6a53a7485c8a)
