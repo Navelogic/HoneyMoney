@@ -3,6 +3,7 @@ package br.com.honeymoney.api.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "categorys")
@@ -15,6 +16,7 @@ public class Category {
     // String
     @NotNull(message = "Nome da categoria não pode ser nulo")
     @NotEmpty(message = "Nome da categoria é obrigatório")
+    @Size(min = 3, max = 50, message = "Nome da categoria deve ter entre 3 e 50 caracteres")
     private String name;
 
     // Getters and Setters
