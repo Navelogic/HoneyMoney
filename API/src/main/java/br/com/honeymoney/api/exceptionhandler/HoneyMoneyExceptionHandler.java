@@ -1,5 +1,6 @@
 package br.com.honeymoney.api.exceptionhandler;
 
+import br.com.honeymoney.api.model.Erro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolation;
 import java.util.List;
 
 @ControllerAdvice
@@ -24,14 +26,14 @@ public class HoneyMoneyExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
         String userMessage = messageSource.getMessage("message.erro.category.toomanyatributes", null, LocaleContextHolder.getLocale());
-
-        return handleExceptionInternal(ex, userMessage, headers, HttpStatus.BAD_REQUEST, request);
+        String devMessage = ex.getCause().toString();
+        return handleExceptionInternal(ex, new Erro(userMessage, devMessage), headers, HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(javax.validation.ConstraintViolationException.class)
     protected ResponseEntity<Object> handlerConstraintViolationException(javax.validation.ConstraintViolationException ex) {
         List<String> erros = ex.getConstraintViolations().stream()
-                .map(constraintViolation -> constraintViolation.getMessage())
+                .map(ConstraintViolation::getMessage)
                 .collect(java.util.stream.Collectors.toList());
 
         return ResponseEntity.badRequest().body(erros);
