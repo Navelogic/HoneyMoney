@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS persons;
+CREATE TABLE persons (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    address_sur_name VARCHAR(255),
+    address_type VARCHAR(255),
+    address_public_place VARCHAR(255),
+    address_number VARCHAR(255),
+    address_complement VARCHAR(255),
+    address_neighborhood VARCHAR(255),
+    address_cep VARCHAR(255),
+    address_city VARCHAR(255),
+    address_state VARCHAR(2),
+    address_country VARCHAR(255),
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255),
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255),
+    phone VARCHAR(255) NOT NULL,
+    bio TEXT,
+    photo_url VARCHAR(255) DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+    job_title VARCHAR(255),
+    job_description VARCHAR(255),
+    active BOOLEAN DEFAULT TRUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT UQ_persons_email UNIQUE (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
