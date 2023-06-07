@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/categorys")
@@ -38,7 +39,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> save(@RequestBody Category category, HttpServletResponse response) {
+    public ResponseEntity<Category> save(@RequestBody @Valid Category category, HttpServletResponse response) {
         return categoryService.save(category, response);
     }
 
