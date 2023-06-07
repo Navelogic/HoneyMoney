@@ -1,6 +1,7 @@
 package br.com.honeymoney.api.model;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Embeddable
@@ -15,6 +16,7 @@ public class Address {
     private String neighborhood;
     private String cep;
     private String city;
+    @Size(max = 2, message = "Estado deve ter 2 caracteres")
     private String state;
     private String country;
 
