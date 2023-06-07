@@ -14,14 +14,12 @@ public class Address {
     private String number;
     private String complement;
     private String neighborhood;
-    private String cep;
-    private String city;
-    @Size(max = 2, message = "Estado deve ter 2 caracteres")
-    private String state;
-    private String country;
+    private String zipCode;
 
-    // LocalDateTime
-    private LocalDateTime createdAt;
+    private String cityName;
+    @Size(max = 2, message = "Estado deve ter 2 caracteres")
+    private String stateTag;
+    private String countryName;
 
     // Getters and Setters
     public String getSurName() {
@@ -72,43 +70,36 @@ public class Address {
         this.neighborhood = neighborhood;
     }
 
-    public String getCep() {
-        return cep;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setZipCode(String cep) {
+        this.zipCode = cep;
     }
 
-    public String getCity() {
-        return city;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityName(String city) {
+        this.cityName = city;
     }
 
-    public String getState() {
-        return state;
+    public String getStateTag() {
+        return stateTag;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStateTag(String state) {
+        this.stateTag = state;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountryName(String country) {
+        this.countryName = country;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 }
