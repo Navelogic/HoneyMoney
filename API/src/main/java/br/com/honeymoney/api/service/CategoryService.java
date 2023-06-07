@@ -3,6 +3,7 @@ package br.com.honeymoney.api.service;
 import br.com.honeymoney.api.dao.CategoryDAO;
 import br.com.honeymoney.api.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,6 +29,14 @@ public class CategoryService {
     }
 
     public ResponseEntity<Category> save(Category category, HttpServletResponse response) {
+        // Verificar se já existe uma categoria com o mesmo nome
+        Category existingCategory = categoryDAO.findByName(category.getName());
+        if (existingCategory != null) {
+            // Retornar uma resposta informando a duplicidade
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
+
+        // Nenhuma categoria com o mesmo nome foi encontrada, prosseguir com o salvamento
         Category categorySaved = categoryDAO.save(category);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequestUri()
@@ -37,6 +46,7 @@ public class CategoryService {
         response.setHeader("Location", location.toASCIIString());
         return ResponseEntity.created(location).body(categorySaved);
     }
+
 
     public ResponseEntity<?> delete(Long id) {
         Category category = categoryDAO.findById(id).orElse(null);
