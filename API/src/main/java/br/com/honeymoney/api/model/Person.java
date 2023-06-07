@@ -47,6 +47,7 @@ public class Person {
     private boolean active = true;
 
     // LocalDateTime
+    @Column(insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
     // Constructors
