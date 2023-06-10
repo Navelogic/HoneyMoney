@@ -5,12 +5,17 @@ import br.com.honeymoney.api.event.ResourceCreatedEvent;
 import br.com.honeymoney.api.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -23,8 +28,19 @@ public class PersonService {
     private ApplicationEventPublisher publisher;
 
     // CRUD methods
+    public Page<Person> findAll(int page, int size, String sort) {
+        Pageable pageable;
 
-    public ResponseEntity<?> findAll() {
+        if(sort != null && !sort.isEmpty()){
+            String[] sortProperties = sort.split(",");
+            Sort.Order[] orders = Arrays.stream(sortProperties)
+                    .map(this::parseSortProperty)
+                    .toArray(Sort.Order[]::new);
+            pageable = PageRequest.of(page, size, Sort.by(orders));
+        } else {
+            pageable = PageRequest.of(page, size);
+        }
+
         List<Person> persons = personDAO.findAll();
         return !persons.isEmpty() ? ResponseEntity.ok(persons) : ResponseEntity.noContent().build();
     }
