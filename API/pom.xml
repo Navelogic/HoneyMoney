@@ -49,6 +49,12 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- Hibernate Java 8 Support Dependency -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+        </dependency>
+
         <!-- Lombok Dependency -->
         <dependency>
             <groupId>org.projectlombok</groupId>
