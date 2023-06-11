@@ -55,6 +55,12 @@
             <artifactId>hibernate-java8</artifactId>
         </dependency>
 
+        <!-- Jackson Data Java 8 Support Dependency -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
         <!-- Lombok Dependency -->
         <dependency>
             <groupId>org.projectlombok</groupId>
