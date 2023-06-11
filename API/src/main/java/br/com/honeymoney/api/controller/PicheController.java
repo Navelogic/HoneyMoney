@@ -57,7 +57,7 @@ public class PicheController {
     // OTHER METHODS
 
     // TOTAL PICHES
-    @GetMapping("/total")
+    @GetMapping("/count")
     public Integer count() {
         return picheService.count();
     }
