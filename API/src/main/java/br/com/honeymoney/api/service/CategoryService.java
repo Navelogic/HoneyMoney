@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
-import java.net.URI;
 import java.util.List;
 
 @Service
@@ -51,11 +50,24 @@ public class CategoryService {
         return ResponseEntity.status(HttpStatus.CREATED).body(categorySaved);
     }
 
+    @Transactional
     public ResponseEntity<?> delete(Long id) {
         Category category = categoryDAO.findById(id).orElse(null);
         if (category != null) {
             categoryDAO.delete(category);
             return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @Transactional
+    public ResponseEntity<Category> update(Long id, Category category) {
+        Category categorySaved = categoryDAO.findById(id).orElse(null);
+        if (categorySaved != null) {
+            category.setId(id);
+            category.setName(category.getName());
+            categorySaved = categoryDAO.save(category);
+            return ResponseEntity.ok(categorySaved);
         }
         return ResponseEntity.notFound().build();
     }

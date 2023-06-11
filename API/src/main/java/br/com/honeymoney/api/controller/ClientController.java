@@ -1,7 +1,7 @@
 package br.com.honeymoney.api.controller;
 
-import br.com.honeymoney.api.model.Person;
-import br.com.honeymoney.api.service.PersonService;
+import br.com.honeymoney.api.model.Client;
+import br.com.honeymoney.api.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,41 +10,46 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/persons")
-public class PersonController {
+@RequestMapping("/api/clients")
+public class ClientController {
+
     @Autowired
-    private PersonService personService;
+    private ClientService clientService;
 
     // Test
     @RequestMapping("/test")
     public String test() {
-        return "PersonController OK!";
+        return "ClientController OK!";
     }
     // END Test
 
-    // CRUD methods
     @GetMapping
     public ResponseEntity<?> findAll() {
-        return personService.findAll();
+        return clientService.findAll();
     }
 
     @GetMapping("/count")
     public Integer count() {
-        return personService.count();
+        return clientService.count();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        return personService.findById(id);
+        return clientService.findById(id);
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody @Valid Person person, HttpServletResponse response) {
-        return personService.save(person, response);
+    public ResponseEntity<?> save(@RequestBody @Valid Client client, HttpServletResponse response) {
+        return clientService.save(client, response);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        return personService.delete(id);
+        return clientService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody @Valid Client client) {
+        return clientService.update(id, client);
     }
 }

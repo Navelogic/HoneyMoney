@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS persons;
-CREATE TABLE persons (
+DROP TABLE IF EXISTS tb_clients;
+CREATE TABLE tb_clients (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     sur_name VARCHAR(255),
     type VARCHAR(255),
@@ -11,16 +11,10 @@ CREATE TABLE persons (
     city_name VARCHAR(255),
     state_tag VARCHAR(2),
     country_name VARCHAR(255),
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    password VARCHAR(255),
+    register VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
-    bio TEXT,
-    photo_url VARCHAR(255) DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
-    job_title VARCHAR(255),
-    job_description VARCHAR(255),
-    active BOOLEAN DEFAULT TRUE,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT UQ_persons_email UNIQUE (email)
+    description TEXT,
+    CONSTRAINT UQ_clients_email UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
