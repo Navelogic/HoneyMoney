@@ -3,8 +3,6 @@ package br.com.honeymoney.api.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -21,8 +19,6 @@ public class Piche {
 
     // LocalDate
     @Column(name = "date_expiration")
-    @NotNull(message = "Data de vencimento é obrigatório")
-    @NotEmpty(message = "Data de vencimento é obrigatório")
     private LocalDate dateExpiration;
     @Column(name = "date_payment")
     private LocalDate datePayment;
