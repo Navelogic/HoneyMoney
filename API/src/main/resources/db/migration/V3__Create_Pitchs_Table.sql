@@ -8,6 +8,6 @@ CREATE TABLE tb_piches (
     type VARCHAR(255) NOT NULL,
     id_category BIGINT UNSIGNED NOT NULL,
     id_client BIGINT UNSIGNED NOT NULL,
-    FOREIGN KEY (id_category) REFERENCES tb_categories(id),
+    FOREIGN KEY (id_category) REFERENCES tb_categorys(id),
     FOREIGN KEY (id_client) REFERENCES tb_clients(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
