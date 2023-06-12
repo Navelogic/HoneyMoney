@@ -4,20 +4,20 @@ INSERT INTO tb_categorys (name) VALUES ('Alimentos');
 INSERT INTO tb_categorys (name) VALUES ('Móveis');
 INSERT INTO tb_categorys (name) VALUES ('Livros');
 
-INSERT INTO tb_clients (name, email, register, phone, sur_name, type, public_place, number, complement, neighborhood, zip_code, city_name, state_tag, country_name)
-VALUES ('João da Silva', 'joao.silva@gmail.com', '12345678900', '987654321', 'Silva', 'Casa', 'Rua A', '123', 'Apartamento 1', 'Centro', '12345-678', 'São Paulo', 'SP', 'Brasil');
+INSERT INTO tb_clients (sur_name, type, public_place, number, complement, neighborhood, zip_code, city_name, state_tag, country_name, name, email, register, phone, active, description)
+VALUES ('Sobrenome 1', 'Tipo 1', 'Rua 1', '123', 'Complemento 1', 'Bairro 1', '12345-678', 'Cidade 1', 'ST', 'País 1', 'Nome 1', 'email1@example.com', '123456789', '987654321', true, 'Descrição 1');
 
-INSERT INTO tb_clients (name, email, register, phone, sur_name, type, public_place, number, complement, neighborhood, zip_code, city_name, state_tag, country_name)
-VALUES ('Maria Souza', 'maria.souza@gmail.com', '98765432100', '123456789', 'Souza', 'Apartamento', 'Av. B', '456', 'Bloco C', 'Bela Vista', '98765-432', 'Rio de Janeiro', 'RJ', 'Brasil');
+INSERT INTO tb_clients (name, email, register, phone, active)
+VALUES ('Nome 2', 'email2@example.com', '987654321', '123456789', false);
 
-INSERT INTO tb_clients (name, email, register, phone, sur_name, type, public_place, number, complement, neighborhood, zip_code, city_name, state_tag, country_name)
-VALUES ('Pedro Santos', 'pedro.santos@gmail.com', '55555555555', '999999999', 'Santos', 'Casa', 'Rua C', '789', 'Casa', 'Jardim das Flores', '54321-987', 'Belo Horizonte', 'MG', 'Brasil');
+INSERT INTO tb_clients (name, email, register, phone, active, complement, description)
+VALUES ('Nome 3', 'email3@example.com', '123456789', '987654321', true, '', NULL);
 
-INSERT INTO tb_clients (name, email, register, phone, sur_name, type, public_place, number, complement, neighborhood, zip_code, city_name, state_tag, country_name)
-VALUES ('Ana Oliveira', 'ana.oliveira@gmail.com', '88888888888', '777777777', 'Oliveira', 'Apartamento', 'Av. D', '987', 'Apartamento 2', 'Centro', '76543-210', 'Salvador', 'BA', 'Brasil');
+INSERT INTO tb_clients (name, email, register, phone, active, description)
+VALUES ('Nome 4', 'email4@example.com', '987654321', '123456789', true, 'Descrição 4: Lorem ipsum dolor sit amet.');
 
-INSERT INTO tb_clients (name, email, register, phone, sur_name, type, public_place, number, complement, neighborhood, zip_code, city_name, state_tag, country_name)
-VALUES ('José Costa', 'jose.costa@gmail.com', '44444444444', '666666666', 'Costa', 'Casa', 'Rua E', '321', 'Casa', 'Vila Nova', '21098-765', 'Porto Alegre', 'RS', 'Brasil');
+INSERT INTO tb_clients (name, email, register, phone, active, type, complement, description)
+VALUES ('Nome 5', 'email5@example.com', '123456789', '987654321', true, '', '', '');
 
 INSERT INTO tb_piches (description, date_expiration, date_payment, price, type, id_category, id_client)
 VALUES ('Compra de computadores', '2023-07-31', '2023-07-15', 50.00, 'RECEITA', 1, 1);
