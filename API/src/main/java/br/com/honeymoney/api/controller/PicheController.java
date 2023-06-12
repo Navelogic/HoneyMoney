@@ -28,7 +28,7 @@ public class PicheController {
     // CREATE
     @PostMapping
     public ResponseEntity<Piche> save(@RequestBody @Valid Piche piche, HttpServletResponse response) {
-        // Chamar o método save do PicheService para criar um novo Piche
+        // Chamar o método save do PicheService para criar um Piche
         return picheService.save(piche, response);
     }
 
