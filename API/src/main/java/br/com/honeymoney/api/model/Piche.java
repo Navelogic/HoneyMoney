@@ -3,6 +3,7 @@ package br.com.honeymoney.api.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -24,6 +25,7 @@ public class Piche {
     private LocalDate datePayment;
 
     // BigDecimal
+    @NotNull(message = "O campo valor é obrigatório")
     private BigDecimal price;
 
     // TupePiche
@@ -31,11 +33,13 @@ public class Piche {
     private TypePiche type;
 
     // Category
+    @NotNull(message = "O campo categoria é obrigatório")
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
 
     // Client
+    @NotNull(message = "O campo cliente é obrigatório")
     @ManyToOne
     @JoinColumn(name = "id_client")
     private Client client;
