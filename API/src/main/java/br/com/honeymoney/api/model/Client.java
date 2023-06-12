@@ -99,7 +99,7 @@ public class Client {
     public void setActive(Boolean active) {
         this.active = active;
     }
-    
+
     @JsonIgnore
     @Transient
     public boolean isInactive() {
