@@ -13,6 +13,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // Configura autenticação em memória com usuário e senha
         auth.inMemoryAuthentication()
                 .withUser("admin").password("admin").roles("ROLE");
     }
@@ -20,13 +21,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                    .antMatchers("/api/categorys").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                .httpBasic().and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .antMatchers("/api/categorys").permitAll() // Permite acesso sem autenticação à URL "/api/categorys"
+                .anyRequest().authenticated() // Exige autenticação para qualquer outra URL
                 .and()
-                .csrf().disable();
+                .httpBasic() // Configura autenticação básica
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Configura política de criação de sessão como stateless (sem estado)
+                .and()
+                .csrf().disable(); // Desabilita proteção CSRF (Cross-Site Request Forgery)
 
     }
 }
