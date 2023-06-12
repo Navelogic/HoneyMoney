@@ -15,6 +15,7 @@ CREATE TABLE tb_clients (
     email VARCHAR(255) NOT NULL,
     register VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
+    active BOOLEAN NOT NULL,
     description TEXT,
     CONSTRAINT UQ_clients_email UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
