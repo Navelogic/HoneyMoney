@@ -1,5 +1,7 @@
 package br.com.honeymoney.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -29,18 +31,9 @@ public class Client {
     private String register;
     private String description;
 
-    // Constructors
-    public Client() {
-    }
-    public Client(Long id, Address address, String name, String email, String phone, String register, String description) {
-        this.id = id;
-        this.address = address;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.register = register;
-        this.description = description;
-    }
+    // Boolean
+    @NotNull(message = "Ativo não pode ser nulo")
+    private Boolean active;
 
     // Getters and Setters
     public Long getId() {
@@ -87,8 +80,8 @@ public class Client {
         return register;
     }
 
-    public void setRegister(String cpf_cnpj) {
-        this.register = cpf_cnpj;
+    public void setRegister(String register) {
+        this.register = register;
     }
 
     public String getDescription() {
@@ -97,5 +90,19 @@ public class Client {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+    
+    @JsonIgnore
+    @Transient
+    public boolean isInactive() {
+        return !this.active;
     }
 }
