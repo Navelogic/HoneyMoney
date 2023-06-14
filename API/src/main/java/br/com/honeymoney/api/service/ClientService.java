@@ -25,13 +25,12 @@ public class ClientService {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    //CRUD
+    // CRUD
 
     // CREATE
     @Transactional
     public ResponseEntity<Client> save(Client client, HttpServletResponse response) {
         // Verificar se já existe um cliente com o mesmo endereço eletrónico, register ou nome
-
         Client clientFound = clientDAO.findByEmailOrRegisterOrName(
                 client.getEmail(),
                 client.getRegister(),
@@ -40,13 +39,11 @@ public class ClientService {
 
         if (clientFound != null) {
             // Retornar uma resposta informando a duplicidade
-
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         }
 
         // Nenhum cliente com o mesmo endereço eletrónico, cpf_cnpj ou nome foi encontrado,
         // prosseguir com o salvamento
-
         Client clientSaved = clientDAO.save(client);
 
         // Publicar um evento para adicionar o header Location com o URI do recurso criado
@@ -110,7 +107,7 @@ public class ClientService {
         return ResponseEntity.notFound().build();
     }
 
-    // Bussiness rules
+    // Business rules
 
     // TOTAL CLIENTS
     public Integer count() {
