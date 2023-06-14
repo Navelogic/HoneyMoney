@@ -44,13 +44,20 @@ replay_pid*
 *.rar
 
 # Angular specific
-/node_modules/
 /dist/
 /coverage/
 /*.js
 /*.js.map
 /*.css
 /*.css.map
+
+# Miscellaneous
+/.angular/cache/
+.sass-cache/
+/connect.lock
+/libpeerconnection.log
+testem.log
+/typings/
 
 # System files
 .DS_Store
