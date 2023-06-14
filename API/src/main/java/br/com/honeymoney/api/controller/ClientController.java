@@ -48,6 +48,11 @@ public class ClientController {
         return clientService.update(id, client);
     }
 
+    @PutMapping("/{id}/active")
+    public ResponseEntity<?> updateAtributeActive(@PathVariable Long id, @RequestBody Boolean active) {
+        return clientService.updateAtributeActive(id, active);
+    }
+
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tb_clients")
@@ -16,6 +15,7 @@ public class Client {
     private Long id;
 
     // Address
+    @Embedded
     private Address address;
 
     // String
@@ -32,7 +32,6 @@ public class Client {
     private String description;
 
     // Boolean
-    @NotNull(message = "Ativo não pode ser nulo")
     private Boolean active;
 
     // Getters and Setters

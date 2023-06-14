@@ -1,9 +1,9 @@
 package br.com.honeymoney.api.dao;
 
-import br.com.honeymoney.api.model.Piche;
+import br.com.honeymoney.api.model.Release;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PicheDAO extends JpaRepository<Piche, Long> {
+public interface ReleaseDAO extends JpaRepository<Release, Long> {
 }

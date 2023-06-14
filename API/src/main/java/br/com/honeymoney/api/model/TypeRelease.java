@@ -1,6 +1,6 @@
 package br.com.honeymoney.api.model;
 
-public enum TypePiche {
+public enum TypeRelease {
     RECEITA,
     DESPESA
 }

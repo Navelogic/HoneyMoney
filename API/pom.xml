@@ -61,12 +61,6 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
-        <!-- Spring Security Dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
         <!-- Lombok Dependency -->
         <dependency>
             <groupId>org.projectlombok</groupId>

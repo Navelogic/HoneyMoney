@@ -4,6 +4,8 @@ import br.com.honeymoney.api.dao.ClientDAO;
 import br.com.honeymoney.api.event.ResourceCreatedEvent;
 import br.com.honeymoney.api.model.Client;
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -12,9 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ClientService {
@@ -74,10 +79,10 @@ public class ClientService {
             Client existingClient = clientOptional.get();
 
             try {
-                // Copiar as propriedades do objeto client para o existingClient
+                // Copiar apenas as propriedades não nulas do objeto client para o existingClient
                 BeanUtils.copyProperties(existingClient, client);
             } catch (IllegalAccessException | InvocationTargetException e) {
-                // Lida com qualquer exceção que ocorrer durante a cópia das propriedades
+                // Lidar com qualquer exceção que ocorrer durante a cópia das propriedades
                 e.printStackTrace();
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
@@ -90,6 +95,7 @@ public class ClientService {
 
         return ResponseEntity.notFound().build();
     }
+
 
     // DELETE
     @Transactional
@@ -120,7 +126,7 @@ public class ClientService {
     }
 
     // UPDATE ACTIVE ATTRIBUTE
-    public void updateAtributeActive(Long id, Boolean active) {
+    public ResponseEntity<?> updateAtributeActive(Long id, Boolean active) {
         // Buscar o cliente pelo ID no banco de dados
         Client client = clientDAO.findById(id).orElse(null);
         if (client != null) {
@@ -128,5 +134,6 @@ public class ClientService {
             client.setActive(active);
             clientDAO.save(client);
         }
+        return null;
     }
 }

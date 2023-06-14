@@ -19,19 +19,19 @@ VALUES ('Nome 4', 'email4@example.com', '987654321', '123456789', true, 'Descri�
 INSERT INTO tb_clients (name, email, register, phone, active, type, complement, description)
 VALUES ('Nome 5', 'email5@example.com', '123456789', '987654321', true, '', '', '');
 
-INSERT INTO tb_piches (description, date_expiration, date_payment, price, type, id_category, id_client)
+INSERT INTO tb_releases (description, date_expiration, date_payment, price, type, id_category, id_client)
 VALUES ('Compra de computadores', '2023-07-31', '2023-07-15', 50.00, 'RECEITA', 1, 1);
 
-INSERT INTO tb_piches (description, date_expiration, date_payment, price, type, id_category, id_client)
+INSERT INTO tb_releases (description, date_expiration, date_payment, price, type, id_category, id_client)
 VALUES ('Pichê 2', '2023-08-31', NULL, 80.00, 'RECEITA', 2, 2);
 
-INSERT INTO tb_piches (description, date_expiration, date_payment, price, type, id_category, id_client)
+INSERT INTO tb_releases (description, date_expiration, date_payment, price, type, id_category, id_client)
 VALUES ('Pichê 3', '2023-09-30', '2023-09-15', 120.00, 'RECEITA', 1, 3);
 
-INSERT INTO tb_piches (description, date_expiration, date_payment, price, type, id_category, id_client)
+INSERT INTO tb_releases (description, date_expiration, date_payment, price, type, id_category, id_client)
 VALUES ('Pichê 4', '2023-10-31', NULL, 90.00, 'RECEITA', 2, 4);
 
-INSERT INTO tb_piches (description, date_expiration, date_payment, price, type, id_category, id_client)
+INSERT INTO tb_releases (description, date_expiration, date_payment, price, type, id_category, id_client)
 VALUES ('Pichê 5', '2023-11-30', '2023-11-15', 150.00, 'RECEITA', 1, 5);
 
 

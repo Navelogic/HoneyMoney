@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "tb_piches")
-public class Piche {
+@Table(name = "tb_releases")
+public class Release {
     // Long
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +19,7 @@ public class Piche {
     private String description;
 
     // LocalDate
+    @NotNull(message = "O campo data de vencimento é obrigatório")
     @Column(name = "date_expiration")
     private LocalDate dateExpiration;
     @Column(name = "date_payment")
@@ -29,8 +30,9 @@ public class Piche {
     private BigDecimal price;
 
     // TupePiche
+    @NotNull(message = "O campo tipo é obrigatório")
     @Enumerated(EnumType.STRING)
-    private TypePiche type;
+    private TypeRelease type;
 
     // Category
     @NotNull(message = "O campo categoria é obrigatório")
@@ -85,11 +87,11 @@ public class Piche {
         this.price = price;
     }
 
-    public TypePiche getType() {
+    public TypeRelease getType() {
         return type;
     }
 
-    public void setType(TypePiche type) {
+    public void setType(TypeRelease type) {
         this.type = type;
     }
 

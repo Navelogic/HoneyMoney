@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS tb_piches;
-CREATE TABLE tb_piches (
+DROP TABLE IF EXISTS tb_releases;
+CREATE TABLE tb_releases (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     description TEXT,
     date_expiration DATE NOT NULL,
