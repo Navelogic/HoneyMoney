@@ -34,7 +34,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id) {
+    public ResponseEntity<Client> findById(@PathVariable Long id) {
         return clientService.findById(id);
     }
 

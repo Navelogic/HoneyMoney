@@ -74,6 +74,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Bean Utils -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+
         <!-- Flyway Dependency -->
         <dependency>
             <groupId>org.flywaydb</groupId>

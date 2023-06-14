@@ -28,14 +28,14 @@ public class HoneyMoneyExceptionHandler extends ResponseEntityExceptionHandler {
     @Autowired
     private MessageSource messageSource;
 
-    // Trata exceções de requisições com mensagem HTTP não legível
+    // Trata exceções de requisições com mensagem HTTP ilegível
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        // Obtém a mensagem de erro do usuário com base no arquivo de propriedades de mensagens
+        // Obtém a mensagem de erro do utilizador com base no arquivo de propriedades de mensagens
         String userMessage = messageSource.getMessage("message.erro.category.toomanyatributes", null, LocaleContextHolder.getLocale());
         // Obtém a mensagem de erro do desenvolvedor
         String devMessage = ex.getCause().toString();
-        // Cria uma lista de erros com a mensagem do usuário e do desenvolvedor
+        // Cria uma lista de erros com a mensagem do utilizador e do desenvolvedor
         List<Erro> erros = Arrays.asList(new Erro(userMessage, devMessage));
         // Retorna a resposta com a lista de erros e o status HTTP correspondente
         return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
@@ -53,11 +53,11 @@ public class HoneyMoneyExceptionHandler extends ResponseEntityExceptionHandler {
     // Trata exceções de acesso a dados vazio
     @ExceptionHandler({EmptyResultDataAccessException.class})
     public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request){
-        // Obtém a mensagem de erro do usuário com base no arquivo de propriedades de mensagens
+        // Obtém a mensagem de erro do utilizador com base no arquivo de propriedades de mensagens
         String userMessage = messageSource.getMessage("message.erro.resource.notfound", null, LocaleContextHolder.getLocale());
         // Obtém a mensagem de erro do desenvolvedor
         String devMessage = ex.toString();
-        // Cria uma lista de erros com a mensagem do usuário e do desenvolvedor
+        // Cria uma lista de erros com a mensagem do utilizador e do desenvolvedor
         List<Erro> erros = Arrays.asList(new Erro(userMessage, devMessage));
         // Retorna a resposta com a lista de erros e o status HTTP correspondente
         return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);

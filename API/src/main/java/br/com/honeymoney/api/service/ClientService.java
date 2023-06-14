@@ -3,6 +3,7 @@ package br.com.honeymoney.api.service;
 import br.com.honeymoney.api.dao.ClientDAO;
 import br.com.honeymoney.api.event.ResourceCreatedEvent;
 import br.com.honeymoney.api.model.Client;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -22,6 +25,42 @@ public class ClientService {
     @Autowired
     private ApplicationEventPublisher publisher;
 
+    //CRUD
+
+    // CREATE
+    @Transactional
+    public ResponseEntity<Client> save(Client client, HttpServletResponse response) {
+        // Verificar se já existe um cliente com o mesmo endereço eletrónico, register ou nome
+
+        Client clientFound = clientDAO.findByEmailOrRegisterOrName(
+                client.getEmail(),
+                client.getRegister(),
+                client.getName()
+        );
+
+        if (clientFound != null) {
+            // Retornar uma resposta informando a duplicidade
+
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
+
+        // Nenhum cliente com o mesmo endereço eletrónico, cpf_cnpj ou nome foi encontrado,
+        // prosseguir com o salvamento
+
+        Client clientSaved = clientDAO.save(client);
+
+        // Publicar um evento para adicionar o header Location com o URI do recurso criado
+        publisher.publishEvent(new ResourceCreatedEvent(this, response, clientSaved.getId()));
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientSaved);
+    }
+
+    // READ
+    public ResponseEntity<Client> findById(Long id) {
+        Optional<Client> client = clientDAO.findById(id);
+        return client.isPresent() ? ResponseEntity.ok(client.get()) : ResponseEntity.notFound().build();
+    }
+
     public ResponseEntity<?> findAll() {
         // Buscar todos os clientes do banco de dados
         List<Client> clients = clientDAO.findAll();
@@ -29,53 +68,45 @@ public class ClientService {
         return !clients.isEmpty() ? ResponseEntity.ok(clients) : ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<?> findById(Long id) {
-        // Buscar um cliente pelo ID no banco de dados
-        Client client = clientDAO.findById(id).orElse(null);
-        // Verificar se o cliente foi encontrado e retornar uma resposta apropriada
-        return client != null ? ResponseEntity.ok(client) : ResponseEntity.notFound().build();
-    }
-
-    @Transactional
-    public ResponseEntity<Client> save(Client client, HttpServletResponse response){
-        // Verificar se já existe um cliente com o mesmo email, register ou nome
-        Client clientFound = clientDAO.findByEmailOrRegisterOrName(client.getEmail(), client.getRegister(), client.getName());
-        if (clientFound != null) {
-            // Retornar uma resposta informando a duplicidade
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
-        }
-
-        // Nenhum cliente com o mesmo email, cpf_cnpj ou nome foi encontrado, prosseguir com o salvamento
-        Client clientSaved = clientDAO.save(client);
-
-        // Publicar o evento
-        publisher.publishEvent(new ResourceCreatedEvent(this, response, clientSaved.getId()));
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(clientSaved);
-    }
-
+    // UPDATE
     @Transactional
     public ResponseEntity<Client> update(Long id, Client client) {
         // Buscar o cliente pelo ID no banco de dados
-        Client clientSaved = clientDAO.findById(id).orElse(null);
-        if (clientSaved != null) {
-            client.setId(id);
-            // Atualizar os atributos do cliente e salvar no banco de dados
-            clientSaved = clientDAO.save(client);
-            return ResponseEntity.ok(clientSaved);
+        Optional<Client> clientOptional = clientDAO.findById(id);
+        if (clientOptional.isPresent()) {
+            Client existingClient = clientOptional.get();
+
+            try {
+                // Copiar as propriedades do objeto client para o existingClient
+                BeanUtils.copyProperties(existingClient, client);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                // Lida com qualquer exceção que ocorrer durante a cópia das propriedades
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+
+            // Salvar o cliente atualizado no banco de dados
+            Client updatedClient = clientDAO.save(existingClient);
+
+            return ResponseEntity.ok(updatedClient);
         }
+
         return ResponseEntity.notFound().build();
     }
 
+    // DELETE
     @Transactional
     public ResponseEntity<?> delete(Long id) {
-        // Buscar o cliente pelo ID no banco de dados
-        Client client = clientDAO.findById(id).orElse(null);
-        if (client != null) {
-            // Excluir o cliente do banco de dados
+        Optional<Client> clientOptional = clientDAO.findById(id);
+        if (clientOptional.isPresent()) {
+            Client client = clientOptional.get();
+
+            // Remover o cliente do banco de dados
             clientDAO.delete(client);
+
             return ResponseEntity.ok().build();
         }
+
         return ResponseEntity.notFound().build();
     }
 
