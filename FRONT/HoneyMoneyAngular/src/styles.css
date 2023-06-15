@@ -2,5 +2,21 @@
 @import "primeng/resources/primeng.css";
 
 body {
-  font-family: var(--font-family);
+  margin: 0;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  color: #151414;
+  background-color: #ffffcc; /* Amarelo suave */
 }
+
+/* Cores da LOGO */
+:root {
+  --cor-primaria: #ffea00; /* Amarelo */
+  --cor-secundaria: #000000; /* Preto */
+}
+
+.card-w-title {
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
+}
+
+/* Outras classes */
